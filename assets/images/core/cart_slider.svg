@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="329" height="91" viewBox="0 0 329 91">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Mask" d="M329,91H0V90.98l7.445-8.84L0,73.3v-.842l7.445-8.84L0,54.779v-.823L7.445,45.5,0,37.043V36.22l7.445-8.84L0,18.54V17.7l7.445-8.84L0,.019V0H329V91Z" transform="translate(0)" fill="#0000ce"/>
+    </clipPath>
+  </defs>
+  <g id="Group_253" data-name="Group 253" transform="translate(-16 -499)">
+    <g id="Line_Copy" data-name="Line Copy" transform="translate(16 499)">
+      <path id="Mask-2" data-name="Mask" d="M329,91H0V90.98l7.445-8.84L0,73.3v-.842l7.445-8.84L0,54.779v-.823L7.445,45.5,0,37.043V36.22l7.445-8.84L0,18.54V17.7l7.445-8.84L0,.019V0H329V91Z" transform="translate(0)" fill="#0000ce"/>
+      <g id="Line_Copy-2" data-name="Line Copy" transform="translate(0 0)" clip-path="url(#clip-path)">
+        <path id="Line" d="M.5,92.391V.352" transform="translate(76.942 -1.095)" fill="none" stroke="#fff" stroke-linecap="square" stroke-width="3" stroke-dasharray="2 8"/>
+      </g>
+    </g>
+    <path id="Star_Copy_2" data-name="Star Copy 2" d="M10.5,15,4.328,18.09l1.179-6.545L.514,6.91l6.9-.955L10.5,0l3.086,5.955,6.9.955-4.993,4.635,1.179,6.545Z" transform="translate(316 505)" fill="#fff" opacity="0.278"/>
+    <path id="Star_Copy_3" data-name="Star Copy 3" d="M10,15,4.122,18.09l1.123-6.545L.489,6.91l6.572-.955L10,0l2.939,5.955,6.572.955-4.755,4.635,1.123,6.545Z" transform="translate(68 505)" fill="#fff" opacity="0.278"/>
+  </g>
+</svg>
