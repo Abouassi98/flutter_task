@@ -35,15 +35,12 @@ class CategoriesList extends StatelessWidget {
                     borderRadius: cardDecoration(context).borderRadius,
                     child: ArticleItem(article: articles.items[index]),
                   )
-                : Padding(
-                    padding: EdgeInsets.only(top: index == 0 ? Sizes.paddingV70 : 0),
-                    child: GestureDetector(
-                      key: ValueKey(articles.items[index].id),
-                      onTap: () {
-                        //   ArticleDetailsRoute(index).go(context);
-                      },
-                      child: ArticleItem(article: articles.items[index]),
-                    ),
+                : GestureDetector(
+                    key: ValueKey(articles.items[index].id),
+                    onTap: () {
+                      //   ArticleDetailsRoute(index).go(context);
+                    },
+                    child: ArticleItem(article: articles.items[index]),
                   );
           },
           separatorBuilder: (context, index) {

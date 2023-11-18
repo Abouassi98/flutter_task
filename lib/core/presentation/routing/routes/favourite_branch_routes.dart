@@ -6,11 +6,6 @@ class FavouritesRoute extends GoRouteData {
   static const routes = [
     TypedGoRoute<FavouritesRoute>(
       path: '/favourites',
-      routes: [
-        // TypedGoRoute<CartRoute>(
-        //   path: 'cart',
-        // ),
-      ],
     ),
   ];
 
@@ -18,10 +13,3 @@ class FavouritesRoute extends GoRouteData {
   Widget build(BuildContext context, GoRouterState state) =>
       const FavouriteScreen();
 }
-
-// class CartRoute extends GoRouteData {
-//   const CartRoute();
-
-//   @override
-//   Widget build(BuildContext context, GoRouterState state) => const CartScreen();
-// }

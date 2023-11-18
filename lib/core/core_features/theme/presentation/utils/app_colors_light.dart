@@ -6,7 +6,7 @@ class AppColorsLight implements AppColors {
   @override
   Color get primary => const Color(0xFF0000CE);
   @override
-  Color get secondary => const Color(0xFF213871);
+  Color get secondary => const Color(0xFFFF8E42);
 
   @override
   Color get statusBarColor => Colors.transparent;
@@ -15,7 +15,8 @@ class AppColorsLight implements AppColors {
   @override
   Color get olderAndroidSystemNavBarColor => scaffoldBGColor;
   @override
-  Color get appBarBGColor => Colors.white;
+  Color get appBarBGColor => scaffoldBGColor.withOpacity(0.60);
+
   @override
   Color get scaffoldBGColor => const Color(0xFFD9D9D9);
   @override

@@ -33,9 +33,9 @@ Future<T?> showPlatformAlertDialog<T extends Object?>({
       barrierLabel: '',
       transitionBuilder: (context, a1, a2, widget) => Transform.scale(
         scale: a1.value,
-        child: WillPopScope(
+        child: PopScope(
           //This prevent closing the dialog when pressing device's back button
-          onWillPop: () => Future.value(barrierDismissible),
+          onPopInvoked: (_) => Future.value(barrierDismissible),
           child: Opacity(
             opacity: a1.value,
             child: AlertDialog(

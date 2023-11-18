@@ -13,10 +13,11 @@ class SearchComponent extends HookWidget {
   Widget build(BuildContext context) {
     final searchController = useTextEditingController(text: '');
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: Sizes.marginV16),
+  
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(Sizes.widgetRadius20),
-        color: Colors.white.withOpacity(0.8), // Whitish and slightly transparent
+        color:
+            Colors.white.withOpacity(0.3), // Whitish and slightly transparent
       ),
       child: Row(
         children: [

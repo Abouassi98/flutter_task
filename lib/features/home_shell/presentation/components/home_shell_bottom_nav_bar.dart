@@ -16,44 +16,41 @@ class HomeShellBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      // TODO(ABOUASSI): remove when migrating the whole app to material3.
-      data: Theme.of(context).copyWith(useMaterial3: true),
-      child: PlatformNavBar(
-        height: Sizes.navBarHeight60,
-        currentIndex: currentTab.index,
-        itemChanged: (index) {
-          onSelectTab(TabItem.values[index]);
-        },
-        material3: (_, __) {
-          return MaterialNavigationBarData(
-            items: TabItem.values
-                .map(
-                  (tabItem) => NavigationDestination(
-                    icon: tabItem.getTabItemIcon(context),
-                    selectedIcon: tabItem.getTabItemSelectedIcon(context),
-                    label: tabItem.getTabItemLabel(context),
-                  ),
-                )
-                .toList(),
-            elevation: 2,
-          );
-        },
-        cupertino: (_, __) {
-          return CupertinoTabBarData(
-            items: TabItem.values
-                .map(
-                  (tabItem) => BottomNavigationBarItem(
-                    icon: tabItem.getTabItemIcon(context),
-                    activeIcon: tabItem.getTabItemSelectedIcon(context),
-                    label: tabItem.getTabItemLabel(context),
-                  ),
-                )
-                .toList(),
-            activeColor: Theme.of(context).colorScheme.primary,
-          );
-        },
-      ),
+    return PlatformNavBar(
+      height: Sizes.navBarHeight60,
+      currentIndex: currentTab.index,
+      itemChanged: (index) {
+        onSelectTab(TabItem.values[index]);
+      },
+      material3: (_, __) {
+        return MaterialNavigationBarData(
+          backgroundColor: Colors.white,
+          items: TabItem.values
+              .map(
+                (tabItem) => NavigationDestination(
+                  icon: tabItem.getTabItemIcon(context),
+                  selectedIcon: tabItem.getTabItemSelectedIcon(context),
+                  label: tabItem.getTabItemLabel(context),
+                ),
+              )
+              .toList(),
+          elevation: 2,
+        );
+      },
+      cupertino: (_, __) {
+        return CupertinoTabBarData(
+          items: TabItem.values
+              .map(
+                (tabItem) => BottomNavigationBarItem(
+                  icon: tabItem.getTabItemIcon(context),
+                  activeIcon: tabItem.getTabItemSelectedIcon(context),
+                  label: tabItem.getTabItemLabel(context),
+                ),
+              )
+              .toList(),
+          activeColor: Theme.of(context).colorScheme.primary,
+        );
+      },
     );
   }
 }

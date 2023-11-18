@@ -33,6 +33,10 @@ class FavouritesRepo {
 
   void addFavProduct({required Product product}) {
     final dto = ProductDto.fromDomain(product);
-    return localDataSource.toggleFavProduct(dto);
+    return localDataSource.addFavProduct(dto);
+  }
+  void removeFavProduct({required Product product}) {
+    final dto = ProductDto.fromDomain(product);
+    return localDataSource.removeFavProduct(dto);
   }
 }

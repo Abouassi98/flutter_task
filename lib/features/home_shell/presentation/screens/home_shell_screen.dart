@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../auth/presentation/providers/sign_out_provider.dart';
+import '../../../../core/core_features/theme/presentation/utils/custom_colors.dart';
 import '../../../../core/infrastructure/services/connection_stream_service.dart';
+import '../../../../core/presentation/routing/app_router.dart';
+import '../../../../core/presentation/styles/styles.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/widgets/toasts.dart';
 import '../../../../core/presentation/widgets/platform_widgets/platform_appbar.dart';
 import '../../../favourites/infrastructure/data_source/products_local_data_source.dart';
+import '../../../favourites/presentation/providers/fetch_fav_favourites_provider.dart';
 import '../components/home_shell_appbar.dart';
 import '../components/home_shell_bottom_nav_bar.dart';
 import '../utils/tab_item.dart';
@@ -22,6 +26,9 @@ class HomeShellScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(productsIsarProvider, (_, __) {});
+    ref.watch(
+      fetchFavProductsProvider,
+    );
     ref.listen(connectionStreamProvider, (prevState, newState) {
       newState.whenOrNull(
         data: (status) {
@@ -50,26 +57,44 @@ class HomeShellScreen extends HookConsumerWidget {
       );
     }
 
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: selectedTab.value == TabItem.home,
+      onPopInvoked: (_) {
         //This prevent popping when tab isn't (Home) & instead will back to home.
         if (selectedTab.value != TabItem.home) {
           selectedTab.value = TabItem.home;
           navigationShell.goBranch(TabItem.home.index);
-          return false;
         }
-        return true;
       },
       child: Scaffold(
         // Using single persistent AppBar for all tabs and update it according to current location.
         // This is necessary to avoid using nested scaffolds as it's discouraged by flutter
         // (but You can use it anyway if you don't want the persistent AppBar behavior).
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: customColors(context).orangeColor,
+          shape: const CircleBorder(),
+          onPressed: () {
+            const CartRoute().go(context);
+          },
+          child: const Padding(
+            padding: EdgeInsets.only(top: 8),
+            child: Column(
+              children: [Text('352'), Icon(Icons.shopping_cart)],
+            ),
+          ),
+          //params
+        ),
+        extendBodyBehindAppBar: navigationShell.isHomeRoute,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         appBar: navigationShell.currentLocationHasAppBar
             ? PlatformAppBar(
+                toolbarHeight: navigationShell.isHomeRoute
+                    ? Sizes.appBarHeight60 * 2
+                    : Sizes.appBarHeight60,
                 appbar: const HomeShellAppBar(),
               )
             : null,
-        extendBodyBehindAppBar: true,
+
         body: navigationShell,
         bottomNavigationBar: HomeShellBottomNavBar(
           currentTab: selectedTab.value,

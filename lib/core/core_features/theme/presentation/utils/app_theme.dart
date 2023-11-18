@@ -174,6 +174,12 @@ class AppTheme {
     buttonColor: _appColors.buttonColor,
     disabledColor: _appColors.buttonDisabledColor,
   );
+  late final ElevatedButtonThemeData _elevatedButtonTheme =
+      ElevatedButtonThemeData(
+    style: ButtonStyle(
+      backgroundColor: MaterialStatePropertyAll<Color>(_appColors.buttonColor),
+    ),
+  );
 
   late final ToggleButtonsThemeData _toggleButtonsTheme =
       ToggleButtonsThemeData(
@@ -197,7 +203,6 @@ class AppTheme {
 
   late final CustomColors _customColors = _appColors.customColors;
 
-  // TODO(ABOUASSI): useMaterial3
   ThemeData getThemeData(String fontFamily) {
     return _baseTheme.copyWith(
       primaryColor: _primaryColor,
@@ -213,6 +218,7 @@ class AppTheme {
       inputDecorationTheme: _inputDecorationTheme,
       iconTheme: _iconTheme,
       buttonTheme: _buttonTheme,
+      elevatedButtonTheme: _elevatedButtonTheme,
       toggleButtonsTheme: _toggleButtonsTheme,
       cardTheme: _cardTheme,
       dialogTheme: _dialogTheme,

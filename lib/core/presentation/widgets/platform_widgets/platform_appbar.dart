@@ -19,7 +19,9 @@ class PlatformAppBar extends StatelessWidget
     this.backgroundColor,
     super.key,
   }) : preferredSize = PreferredAppBarSize(
-            toolbarHeight, bottom?.preferredSize.height ?? 0.0,);
+          toolbarHeight,
+          bottom?.preferredSize.height ?? 0.0,
+        );
 
   final Widget appbar;
 

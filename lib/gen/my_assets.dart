@@ -51,6 +51,9 @@ class MyAssets {
   /// ![preview](file:///Users/mohamedabouaassi/Desktop/flutter_projects/kortoba/assets/icons/search.png)
   static const String ASSETS_ICONS_SEARCH_PNG = 'assets/icons/search.png';
 
+  /// ![preview](file:///Users/mohamedabouaassi/Desktop/flutter_projects/kortoba/assets/images/core/add.png)
+  static const String ASSETS_IMAGES_CORE_ADD_PNG = 'assets/images/core/add.png';
+
   /// ![preview](file:///Users/mohamedabouaassi/Desktop/flutter_projects/kortoba/assets/images/core/android12splash.png)
   static const String ASSETS_IMAGES_CORE_ANDROID12SPLASH_PNG =
       'assets/images/core/android12splash.png';
@@ -66,6 +69,10 @@ class MyAssets {
   /// ![preview](file:///Users/mohamedabouaassi/Desktop/flutter_projects/kortoba/assets/images/core/custom_splash_icon.svg)
   static const String ASSETS_IMAGES_CORE_CUSTOM_SPLASH_ICON_SVG =
       'assets/images/core/custom_splash_icon.svg';
+
+  /// ![preview](file:///Users/mohamedabouaassi/Desktop/flutter_projects/kortoba/assets/images/core/delete_forever-24px.svg)
+  static const String ASSETS_IMAGES_CORE_DELETE_FOREVER_24PX_SVG =
+      'assets/images/core/delete_forever-24px.svg';
 
   /// ![preview](file:///Users/mohamedabouaassi/Desktop/flutter_projects/kortoba/assets/images/core/loading.gif)
   static const String ASSETS_IMAGES_CORE_LOADING_GIF =
@@ -90,6 +97,10 @@ class MyAssets {
   /// ![preview](file:///Users/mohamedabouaassi/Desktop/flutter_projects/kortoba/assets/images/core/remove.svg)
   static const String ASSETS_IMAGES_CORE_REMOVE_SVG =
       'assets/images/core/remove.svg';
+
+  /// ![preview](file:///Users/mohamedabouaassi/Desktop/flutter_projects/kortoba/assets/images/core/slider.png)
+  static const String ASSETS_IMAGES_CORE_SLIDER_PNG =
+      'assets/images/core/slider.png';
 
   /// ![preview](file:///Users/mohamedabouaassi/Desktop/flutter_projects/kortoba/assets/images/core/splash_icon.png)
   static const String ASSETS_IMAGES_CORE_SPLASH_ICON_PNG =

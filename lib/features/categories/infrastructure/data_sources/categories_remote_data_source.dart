@@ -9,7 +9,8 @@ part 'categories_remote_data_source.g.dart';
 
 @Riverpod(keepAlive: true)
 CategoriesRemoteDataSource categoriesRemoteDataSource(
-    CategoriesRemoteDataSourceRef ref,) {
+  CategoriesRemoteDataSourceRef ref,
+) {
   return CategoriesRemoteDataSource(
     ref,
     mainApiFacade: ref.watch(mainApiFacadeProvider),
@@ -25,22 +26,9 @@ class CategoriesRemoteDataSource {
   final CategoriesRemoteDataSourceRef ref;
   final MainApiFacade mainApiFacade;
 
-  static String get articlesPath => 'categories';
+  static String get articlesPath => 'api/v1/categories';
 
   Future<CategoriesDto> fetchCategories({
-    required CancelToken? cancelToken,
-  }) async {
-    final response = await mainApiFacade.getData<List<dynamic>>(
-      path: articlesPath,
-      options: Options(
-        extra: {MainApiConfig.apiKeyExtraKey: true},
-      ),
-      cancelToken: cancelToken,
-    );
-    return CategoriesDto.fromJson(response.data!);
-  }
-
-  Future<CategoriesDto> fetchAssociatedPressArticles({
     required CancelToken? cancelToken,
   }) async {
     final response = await mainApiFacade.getData<List<dynamic>>(

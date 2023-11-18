@@ -23,7 +23,7 @@ class HomeRemoteDataSource {
   final HomeRemoteDataSourceRef ref;
   final MainApiFacade mainApiFacade;
 
-  static String get productsPath => 'products/';
+  static String get productsPath => 'api/v1/products/';
 
   Future<ProductsDto> fetchProducts({
     required CancelToken? cancelToken,
@@ -43,12 +43,20 @@ class HomeRemoteDataSource {
     required int id,
   }) async {
     final response = await mainApiFacade.getData<Map<String, dynamic>>(
-      path: 'products/$id/',
-      options: Options(
-        extra: {MainApiConfig.apiKeyExtraKey: true},
-      ),
+      path: 'api/v1/products/$id/',
       cancelToken: cancelToken,
     );
     return ProductDto.fromJson(response.data!);
+  }
+
+  Future<ProductsDto> fetchProductByCategoryId({
+    required CancelToken? cancelToken,
+    required int id,
+  }) async {
+    final response = await mainApiFacade.getData<List<dynamic>>(
+      path: 'api/v1/products/category/$id/',
+      cancelToken: cancelToken,
+    );
+    return ProductsDto.fromJson(response.data!);
   }
 }

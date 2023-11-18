@@ -34,15 +34,15 @@ class ProductsLocalDataSource {
         .watch(fireImmediately: true);
   }
 
-  void toggleFavProduct(ProductDto dto) {
-    if (dto.isFav) {
-      _isar.writeTxnSync(
-        () => _isar.productDtos.putSync(dto.copyWith(isFav: false)),
-      );
-    } else {
-      _isar.writeTxnSync(
-        () => _isar.productDtos.putSync(dto.copyWith(isFav: true)),
-      );
-    }
+  void addFavProduct(ProductDto dto) {
+    _isar.writeTxnSync(
+      () => _isar.productDtos.putSync(dto.copyWith(isFav: true)),
+    );
+  }
+
+  void removeFavProduct(ProductDto dto) {
+    _isar.writeTxnSync(
+      () => _isar.productDtos.deleteSync(dto.id),
+    );
   }
 }

@@ -70,7 +70,7 @@ class CustomElevatedButton extends StatelessWidget {
               padding: padding,
               width: double.infinity,
               constraints: constraints,
-              child: child,
+              child: Center(child: child),
             ),
           ),
         );

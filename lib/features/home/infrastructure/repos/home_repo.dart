@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import '../../../../core/infrastructure/network/network_info.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../favourites/domain/products.dart';
@@ -31,16 +30,8 @@ class HomeRepo {
   Future<Products> fetchProducts({CancelToken? cancelToken}) async {
     final productsDto =
         await remoteDataSource.fetchProducts(cancelToken: cancelToken);
-    final favProducts = await localDataSource.fetchFavProducts().first;
-    final products = productsDto.toDomain();
-    final newProducts = products.items.map((element) {
-      if (favProducts.any((object2) => object2.id == element.id)) {
-        return element.copyWith(isFav: true);
-      } else {
-        return element.copyWith(isFav: false);
-      }
-    }).toIList();
-    return Products(items: newProducts);
+
+    return productsDto.toDomain();
   }
 
   Future<Product> fetchProductById({
@@ -48,6 +39,17 @@ class HomeRepo {
     CancelToken? cancelToken,
   }) async {
     final product = await remoteDataSource.fetchProductById(
+      id: id,
+      cancelToken: cancelToken,
+    );
+    return product.toDomain();
+  }
+
+  Future<Products> fetchProductByCategoryId({
+    required int id,
+    CancelToken? cancelToken,
+  }) async {
+    final product = await remoteDataSource.fetchProductByCategoryId(
       id: id,
       cancelToken: cancelToken,
     );

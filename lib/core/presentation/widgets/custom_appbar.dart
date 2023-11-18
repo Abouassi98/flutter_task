@@ -43,6 +43,7 @@ class CustomAppBar extends StatelessWidget {
                 : null,
         leadingWidth: Sizes.appBarLeadingWidth,
         automaticallyImplyLeading: false,
+        scrolledUnderElevation: 0,
         title: title,
         centerTitle: centerTitle,
         actions: trailingActions,
@@ -68,7 +69,7 @@ class CustomBackButton extends StatelessWidget {
     return FittedBox(
       fit: BoxFit.scaleDown,
       child: BackButton(
-        color: AppStaticColors.white,
+        color: Colors.grey,
         onPressed: () => NavigationService.pop(context, result: result),
       ),
     );

@@ -3,8 +3,11 @@ import '../../../../core/core_features/theme/presentation/utils/custom_colors.da
 import '../../../../core/presentation/routing/app_router.dart';
 import '../../../../core/presentation/styles/styles.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
+import '../../../../core/presentation/widgets/cached_network_image_rectangle.dart';
 import '../../../favourites/domain/products.dart';
+import '../../../favourites/presentation/providers/fetch_fav_favourites_provider.dart';
 import '../../../favourites/presentation/providers/add_fav_provider.dart';
+import '../../../favourites/presentation/providers/remove_fav_provider.dart';
 
 class HomeItems extends HookConsumerWidget {
   const HomeItems({
@@ -19,83 +22,100 @@ class HomeItems extends HookConsumerWidget {
       onTap: () {
         HomeDetailsRoute($extra: product).go(context);
       },
-      child: Column(
-        children: [
-          Container(
-            height: Sizes.widgetSizeV115,
-            alignment: Alignment.topRight,
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(Sizes.widgetRadius5),
-                topRight: Radius.circular(Sizes.widgetRadius5),
-              ),
-              image: DecorationImage(
-                image: NetworkImage(product.imageLink),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: HookBuilder(
-              builder: (context) {
-                return IconButton(
-                  onPressed: () {
-                    ref.read(addFavProductProvider.notifier).toggleFavProduct(
-                          product,
-                        );
-                  },
-                  icon: Icon(
-                    product.isFav ? Icons.favorite : Icons.favorite_border,
-                    color: product.isFav
-                        ? customColors(context).orangeColor
-                        : customColors(context).greyColor,
-                  ),
-                );
-              },
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: Sizes.paddingH7,
-              vertical: Sizes.paddingV10,
-            ),
-            color: Colors.white,
-            width: double.infinity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+      child: Container(
+        decoration: BoxDecoration(
+          color: customColors(context).whiteColor,
+          borderRadius: BorderRadius.circular(Sizes.buttonR5),
+        ),
+        alignment: Alignment.center,
+        child: Column(
+          children: [
+            Stack(
               children: [
-                SizedBox(
-                  height: Sizes.widgetSizeV24,
-                  child: Text(
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    product.name,
-                    style: TextStyles.blackMediumF12(context),
-                  ),
+                CachedNetworkImageRectangle(
+                  imageUrl: product.imageLink,
                 ),
-                const SizedBox(
-                  height: Sizes.marginH8,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          product.price,
-                          style: TextStyles.blueBoldF14(context),
-                        ),
-                        Text('ج.م', style: TextStyles.blueMediumF12(context)),
-                      ],
-                    ),
-                    Icon(
-                      Icons.add_shopping_cart_outlined,
-                      color: customColors(context).greyColor,
-                    ),
-                  ],
+                HookBuilder(
+                  key: UniqueKey(),
+                  builder: (context) {
+                    final favProducts =
+                        ref.watch(fetchFavProductsProvider).requireValue.items;
+                    final isFav = useState(
+                      favProducts.any((element) => element.id == product.id),
+                    );
+
+                    return IconButton(
+                      onPressed: () {
+                        if (isFav.value) {
+                          ref
+                              .read(removeFavProductProvider.notifier)
+                              .removeFavProduct(
+                                product,
+                              );
+                        } else {
+                          ref
+                              .read(addFavProductProvider.notifier)
+                              .addFavProduct(
+                                product,
+                              );
+                        }
+                        isFav.value = !isFav.value;
+                      },
+                      icon: Icon(
+                        isFav.value ? Icons.favorite : Icons.favorite_border,
+                        color: isFav.value
+                            ? customColors(context).orangeColor
+                            : customColors(context).greyColor,
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
-          ),
-        ],
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: Sizes.paddingH7,
+                vertical: Sizes.paddingV10,
+              ),
+              color: Colors.white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: Sizes.widgetSizeV24,
+                    child: Text(
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      product.name,
+                      style: TextStyles.blackMediumF12(context),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: Sizes.marginH8,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            product.price,
+                            style: TextStyles.blueBoldF14(context),
+                          ),
+                          Text('ج.م', style: TextStyles.blueMediumF12(context)),
+                        ],
+                      ),
+                      Icon(
+                        Icons.add_shopping_cart_outlined,
+                        color: customColors(context).greyColor,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

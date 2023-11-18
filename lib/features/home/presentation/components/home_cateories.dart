@@ -1,30 +1,27 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/presentation/styles/styles.dart';
+import '../../../../core/presentation/widgets/cached_network_image_circular.dart';
+import '../../../categories/domain/categories.dart';
 
 class HomeCategories extends StatelessWidget {
   const HomeCategories({
-    required this.name,
-    required this.image,
+    required this.category,
     super.key,
   });
-  final String name, image;
+  final Category category;
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        CircleAvatar(
-          backgroundImage: NetworkImage(
-            image,
-          ),
+        CachedNetworkImageCircular(
+          imageUrl: category.imageLink,
           radius: Sizes.widgetRadius30,
         ),
-        const SizedBox(
-          height: Sizes.widgetSizeV7,
-        ),
         Text(
-          name,
+          category.name,
           style: TextStyles.blackMediumF12(context),
         ),
       ],

@@ -4,7 +4,7 @@ import '../../../auth/domain/user.dart';
 import '../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../../auth/presentation/screens/register_screen/register_screen.dart';
 import '../../../auth/presentation/screens/sign_in_screen/sign_in_screen.dart';
-import '../../../features/cart/presentation/screens/cart_screen/cart_screen.dart';
+import '../../../features/cart/presentation/screens/cart_screen.dart';
 import '../../../features/categories/presentation/screens/categories_screen/categories_screen.dart';
 import '../../../features/favourites/domain/products.dart';
 import '../../../features/favourites/presentation/screens/favourite_screen.dart';

@@ -10,6 +10,9 @@ class HomeRoute extends GoRouteData {
         TypedGoRoute<HomeDetailsRoute>(
           path: 'home_details',
         ),
+        TypedGoRoute<CartRoute>(
+          path: 'cart',
+        ),
       ],
     ),
   ];
@@ -29,4 +32,11 @@ class HomeDetailsRoute extends GoRouteData {
           product: $extra!,
         ),
       );
+}
+
+class CartRoute extends GoRouteData {
+  const CartRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => const CartScreen();
 }

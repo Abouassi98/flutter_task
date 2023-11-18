@@ -14,32 +14,26 @@ class HomeCategoriesList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final categoriesAsync = ref.watch(categoriesProvider);
-    return categoriesAsync.when(
-      data: (data) => ListView.separated(
-        reverse: true,
-        itemCount: data.items.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, i) {
-          return Row(
-            children: [
-              const SizedBox(
-                width: Sizes.marginH16,
-              ),
-              HomeCategories(
-                image: data.items[i].imageLink,
-                name: data.items[i].name,
-              ),
-            ],
-          );
-        },
-        separatorBuilder: (context, index) {
-          return const SizedBox(
-            width: Sizes.marginH8,
-          );
-        },
+    return SizedBox(
+      height: 80,
+      child: categoriesAsync.when(
+        data: (data) => ListView.separated(
+          itemCount: data.items.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, i) {
+            return HomeCategories(
+              category: data.items[i],
+            );
+          },
+          separatorBuilder: (context, index) {
+            return const SizedBox(
+              width: Sizes.marginH16,
+            );
+          },
+        ),
+        loading: () => const LoadingIndicator(),
+        error: (err, __) => ErrorWidget(err.toString()),
       ),
-      loading: () => const LoadingIndicator(),
-      error: (err, __) => ErrorWidget(err.toString()),
     );
   }
 }

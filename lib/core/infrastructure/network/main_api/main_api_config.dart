@@ -1,5 +1,5 @@
 abstract class MainApiConfig {
-  static const String baseUrl = 'https://flutterapi.kortobaa.net/api/v1/';
+  static const String baseUrl = 'https://flutterapi.kortobaa.net/';
 
   static const Duration connectTimeout = Duration(seconds: 10);
   static const Duration receiveTimeout = Duration(seconds: 20);

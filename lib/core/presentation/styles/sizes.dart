@@ -118,6 +118,7 @@ abstract class Sizes {
   static const double buttonPaddingH96 = 96;
   static const double buttonPaddingH24 = 24;
   static const double buttonR10 = 10;
+  static const double buttonR5 = 5;
 
   // Dialog
   static const double dialogWidth280 = 280;
@@ -137,6 +138,9 @@ abstract class Sizes {
   static const double drawerPaddingV88 = 88;
   static const double drawerPaddingH40 = 40;
   static const double navBarElevation = 2;
+  static const double homeAlbumImageHight = 116;
+  static const double homeAlbumImageWidth = 116;
+  static const double homeAlbumImageRadius = 5;
 
   // HomeShell
   static const double appBarHeight56 = 56;

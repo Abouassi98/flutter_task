@@ -4,28 +4,28 @@ import '../../domain/products.dart';
 import '../../infrastructure/repo/favourites_repo.dart';
 import 'fetch_fav_favourites_provider.dart';
 
-part 'add_fav_provider.g.dart';
+part 'remove_fav_provider.g.dart';
 
 //Using [Option] to indicate idle(none)/success(some) states.
 //This is a shorthand. You can use custom states using [freezed] instead.
 @riverpod
-class AddFavProduct extends _$AddFavProduct {
+class RemoveFavProduct extends _$RemoveFavProduct {
   @override
   FutureOr<Option<Unit>> build() => const None();
 
-  Future<void> addFavProduct(Product params) async {
+  Future<void> removeFavProduct(Product params) async {
     ref.listenSelf((previous, next) {
       next.whenData(
         (value) => value.match(
           () => null,
-          (t) => ref.invalidate(fetchFavProductsProvider),
+          (t) => ref.read(fetchFavProductsProvider.future),
         ),
       );
     });
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       final authRepo = ref.read(favouritesRepoProvider);
-      authRepo.addFavProduct(product: params);
+      authRepo.removeFavProduct(product: params);
       return const Some(unit);
     });
   }
